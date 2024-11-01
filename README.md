@@ -71,6 +71,8 @@ Use this example as base
 ```yml
 services:
   pptp-vpn-client:
+    cap_add:
+      - NET_ADMIN # See https://stackoverflow.com/a/70968064/15965186
     build:
       context: .
       dockerfile: Dockerfile
@@ -80,7 +82,7 @@ services:
       VPN_PASS: ${VPN_PASS}
     privileged: true
 
-  api:
+  another-container:
     image: YOUR_IMAGE_HERE
     network_mode: service:pptp-vpn-client # Attach this container to pptp-vpn-client network, see https://docs.docker.com/engine/network/#container-networks
 ```
