@@ -43,10 +43,47 @@ Based on https://www.reddit.com/r/linuxadmin/comments/1agzsbm/missing_nf_conntra
 iptables -t raw -A PREROUTING -p tcp --dport 1723 -j CT --helper pptp
 ```
 
-## Installation
+## Installation and execution
 
-git clone <repository-url>
-cd <repository-directory>
+Clone the repo with
+
+```
+git clone https://github.com/KrappRamiro/docker-pttp-vpn-client
+cd docker-pttp-vpn-client
+```
+
+Create an `.env` file with the following values:
+
+```env
+VPN_SERVER=YOUR_VPN_IP_ADDRESS_HERE
+VPN_USER=YOUR_VPN_USER_HERE
+VPN_PASS=YOUR_VPN_PASSWORD_HERE
+```
+
+Run the container with `docker compose up -d`
+
+## How to make other containers "use" the VPN
+
+You can use `network_mode` to "mount" a container's network on another container's network
+
+Use this example as base
+
+```yml
+services:
+  pptp-vpn-client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      VPN_SERVER: ${VPN_SERVER}
+      VPN_USER: ${VPN_USER}
+      VPN_PASS: ${VPN_PASS}
+    privileged: true
+
+  api:
+    image: YOUR_IMAGE_HERE
+    network_mode: service:pptp-vpn-client # Attach this container to pptp-vpn-client network, see https://docs.docker.com/engine/network/#container-networks
+```
 
 ## Troubleshooting
 
