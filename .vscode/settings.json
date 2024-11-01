@@ -1,0 +1,10 @@
+{
+    //* Formatters for each language
+    //! Do not configure things like tab size and identation style here,
+    //!  that goes into .editorconfig or .prettierc
+    // Enable editor format on save, and configure autosaving.
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 10000
+}

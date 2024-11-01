@@ -1,0 +1,20 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+# Caveat: Prettier won’t trim trailing whitespace inside template strings, but your editor might.
+trim_trailing_whitespace = true
+insert_final_newline = true
+end_of_line = lf # use lf for line endings, instead of CRLF
+charset = utf-8
+
+#! The suggested syntax for YAML files is to use 2 spaces for indentation, and its suggested to not use tabs for portability reasons
+# Also md because we dont want yml files to be incorrectly formatted in the READMES
+
+[*.{yml,yaml,md}]
+indent_style = space
+indent_size = 2

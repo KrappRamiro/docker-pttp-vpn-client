@@ -1,0 +1,11 @@
+services:
+  pptp-vpn-client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # command: ["sleep", "infinity"]
+    environment:
+      VPN_SERVER: ${VPN_SERVER}
+      VPN_USER: ${VPN_USER}
+      VPN_PASS: ${VPN_PASS}
+    privileged: true
